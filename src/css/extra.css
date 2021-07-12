@@ -14,4 +14,11 @@ body {
 /*counter*/
 #counter{
 	font-size: 10px;
+	top: .1rem;
 }
+
+/*links*/
+#links {
+	direction: rtl;
+}
+

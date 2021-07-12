@@ -29,7 +29,7 @@ import { DiCss3,DiJavascript,DiReact } from "react-icons/di";
 
 const NavBar = ()=>{
  return(
-    <aside className="sidebar show-sidebar sm:bg-green-200 sm:w-36 sm:float-right sm:h-screen sm:relative">
+    <aside className="sidebar show-sidebar sm:bg-green-100 sm:w-36 sm:float-right sm:h-screen sm:relative">
     <div id="counter" className="hidden relative bg-indigo-500 w-6 h-4 text-white rounded-full justify-center top-1 sm:flex sm:left-1">
       <ChevronDoubleRightIcon className="hidden sm:block h-4 w-4 text-white" />
     </div>
@@ -45,48 +45,48 @@ const NavBar = ()=>{
           <MenuIcon className="h-6 w-6 sm:hidden"/>
         </div>
       </header>
-      {/*<div id="linksHolder" className="flex flex-col justify-between px-2 h-screen">
+      <div id="linksHolder" className="relative px-2 h-96">
       <ul id="links">
-          <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white">
-            <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center">
-              <HomeIcon className="w-6 h-6 text-indigo-500"/>
+          <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
+            <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+              <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
             </div>
-            <a href="#" className="px-2 w-full">خانه</a>
+            <a href="#" className="px-2 w-full sm:text-xs">خانه</a>
           </li>
           <div className="border-b border-gray-300 mt-2 text-gray-600">
             <span className="font-bold">پروژه ها</span>
           </div>
-          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600">
-            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center">
-              <DiCss3 className="w-6 h-6 text-white"/>
+          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+              <DiCss3 className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
             </div>
-            <a href="#" className="px-2 w-full">CSS</a>
+            <a href="#" className="px-2 w-full sm:text-xs">CSS</a>
           </li>
-          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600">
-            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center">
-              <DiJavascript className="w-6 h-6 text-white"/>
+          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+              <DiJavascript className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
             </div>
-            <a href="#" className="px-2 w-full">JavaScript</a>
+            <a href="#" className="px-2 w-full sm:text-xs">JavaScript</a>
           </li>
-          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600">
-            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center">
-              <DiReact className="w-6 h-6 text-white"/>
+          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+              <DiReact className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
             </div>
-            <a href="#" className="px-2 w-full">React</a>
+            <a href="#" className="px-2 w-full sm:text-xs">React</a>
           </li>
-          <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white">
-            <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center">
-              <HomeIcon className="w-6 h-6 text-indigo-500"/>
+          <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
+            <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+              <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
             </div>
-            <a href="#" className="px-2 w-full">بیشتر</a>
-            <ChevronLeftIcon className="w-6 h-6 text-white"/> 
+            <a href="#" className="px-2 w-full sm:text-xs">بیشتر</a>
+            <ChevronLeftIcon className="w-5 h-5 text-white absolute left-2 sm:w-3 sm:h-3"/> 
           </li>
         </ul>
-        <div className="mb-1">
-          <button className="btn btn-primary w-full text-center mt-1">ویرایش</button>
+        <div className="flex mb-1 absolute bottom-0">
+          <button className="btn btn-primary w-full sm:p text-center mt-1">ویرایش</button>
           <button className="btn btn-red w-full text-center mt-1">خروج</button>
         </div>
-        </div>*/}
+        </div>
     </aside>
   )
 }

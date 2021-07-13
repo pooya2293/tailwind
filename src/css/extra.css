@@ -14,11 +14,17 @@ body {
 /*counter*/
 #counter{
 	font-size: 10px;
-	top: .1rem;
+	/*top: .1rem;*/
 }
 
 /*links*/
 #links {
 	direction: rtl;
+}
+/* when height smaler tahn content btnHolder remain bottom */
+@media screen and (max-height:606px) {
+	#btnHolder {
+		position: relative;
+	}
 }
 

@@ -1,7 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
-import {AppContext} from './context';
+import {AppContext,useGlobalContext} from './context';
 /* import icons */
 import { Popover, Transition } from '@headlessui/react'
 import prof from './img/prof.jpg'
@@ -30,7 +30,8 @@ import { DiCss3,DiJavascript,DiReact } from "react-icons/di";
 
 const NavBar = ()=>{
 
-  const data = useContext(AppContext);
+  const {isSidebarOpen,openSidebar,closeSidebar} = useGlobalContext();
+  const data = useGlobalContext();
   console.log(data);
  return(
     <aside className="sidebar show-sidebar sm:bg-green-100 sm:w-36 sm:float-right sm:h-screen sm:relative">
@@ -49,47 +50,49 @@ const NavBar = ()=>{
           <MenuIcon className="h-6 w-6 sm:hidden"/>
         </div>
       </header>
-      <div id="linksHolder" className="relative px-2">
-      <ul id="links">
-          <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
-            <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-              <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
+      <div className={`${isSidebarOpen?'':'hidden'}`} >
+        <div id="linksHolder" className="relative px-2" >
+        <ul id="links">
+            <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
+              <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
+              </div>
+              <a href="#" className="px-2 w-full sm:text-xs">خانه</a>
+            </li>
+            <div className="border-b border-gray-300 mt-2 text-gray-600">
+              <span className="font-bold">پروژه ها</span>
             </div>
-            <a href="#" className="px-2 w-full sm:text-xs">خانه</a>
-          </li>
-          <div className="border-b border-gray-300 mt-2 text-gray-600">
-            <span className="font-bold">پروژه ها</span>
+            <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+              <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                <DiCss3 className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
+              </div>
+              <a href="#" className="px-2 w-full sm:text-xs">CSS</a>
+            </li>
+            <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+              <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                <DiJavascript className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
+              </div>
+              <a href="#" className="px-2 w-full sm:text-xs">JavaScript</a>
+            </li>
+            <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+              <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                <DiReact className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
+              </div>
+              <a href="#" className="px-2 w-full sm:text-xs">React</a>
+            </li>
+            <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
+              <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
+              </div>
+              <a href="#" className="px-2 w-full sm:text-xs">بیشتر</a>
+              <ChevronLeftIcon className="w-5 h-5 text-white absolute left-2 sm:w-3 sm:h-3"/> 
+            </li>
+          </ul>
           </div>
-          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
-            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-              <DiCss3 className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
-            </div>
-            <a href="#" className="px-2 w-full sm:text-xs">CSS</a>
-          </li>
-          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
-            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-              <DiJavascript className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
-            </div>
-            <a href="#" className="px-2 w-full sm:text-xs">JavaScript</a>
-          </li>
-          <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
-            <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-              <DiReact className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
-            </div>
-            <a href="#" className="px-2 w-full sm:text-xs">React</a>
-          </li>
-          <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
-            <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-              <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
-            </div>
-            <a href="#" className="px-2 w-full sm:text-xs">بیشتر</a>
-            <ChevronLeftIcon className="w-5 h-5 text-white absolute left-2 sm:w-3 sm:h-3"/> 
-          </li>
-        </ul>
-        </div>
-        <div id="btnHolder" className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto">
-          <button className="btn btn-primary w-full sm:p text-center mt-1">ویرایش</button>
-          <button className="btn btn-red w-full text-center mt-1">خروج</button>
+          <div id="btnHolder" className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto">
+            <button className="btn btn-primary w-full sm:p text-center mt-1">ویرایش</button>
+            <button className="btn btn-red w-full text-center mt-1">خروج</button>
+          </div>
         </div>
     </aside>
   )

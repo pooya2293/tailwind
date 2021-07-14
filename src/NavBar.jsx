@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { useContext } from 'react';
+import React, { Fragment,useContext } from 'react';
 import ReactDOM from 'react-dom';
 import {AppContext,useGlobalContext} from './context';
 /* import icons */
@@ -48,55 +48,66 @@ const NavBar = ()=>{
             <img src={prof} alt="" />
           </div>
           {(isSidebarOpen?
-            <XIcon onClick={()=>closeSidebar()} className="h-6 w-6 sm:hidden" />
-            :<MenuIcon onClick={()=>openSidebar()} className="h-6 w-6 sm:hidden"/>
+            <XIcon onClick={()=>closeSidebar()} className="h-6 w-6 cursor-pointer sm:hidden" />
+            :<MenuIcon onClick={()=>openSidebar()} className="h-6 w-6 cursor-pointer sm:hidden"/>
             )}
         </div>
       </header>
-      <div className={`${isSidebarOpen?'':'hidden'} transition-transform`} >
-        <div id="linksHolder" className="relative px-2" >
-        <ul id="links">
-            <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
-              <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-                <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
+      <Transition
+          as={Fragment}
+          show={isSidebarOpen}
+          enter="transform transition duration-[600ms]"
+          enterFrom="opacity-0 scale-50"
+          enterTo="opacity-100 rotate-0 scale-100"
+          leave="transform duration-200 transition ease-in-out"
+          leaveFrom="opacity-100 scale-100 "
+          leaveTo="opacity-0 scale-50 "
+        >
+        <div className={`${isSidebarOpen?'':'hidden'} transition-all`} >
+          <div id="linksHolder" className="relative px-2" >
+          <ul id="links">
+              <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
+                <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                  <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
+                </div>
+                <a href="#" className="px-2 w-full sm:text-xs">خانه</a>
+              </li>
+              <div className="border-b border-gray-300 mt-2 text-gray-600">
+                <span className="font-bold">پروژه ها</span>
               </div>
-              <a href="#" className="px-2 w-full sm:text-xs">خانه</a>
-            </li>
-            <div className="border-b border-gray-300 mt-2 text-gray-600">
-              <span className="font-bold">پروژه ها</span>
+              <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+                <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                  <DiCss3 className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
+                </div>
+                <a href="#" className="px-2 w-full sm:text-xs">CSS</a>
+              </li>
+              <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+                <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                  <DiJavascript className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
+                </div>
+                <a href="#" className="px-2 w-full sm:text-xs">JavaScript</a>
+              </li>
+              <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
+                <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                  <DiReact className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
+                </div>
+                <a href="#" className="px-2 w-full sm:text-xs">React</a>
+              </li>
+              <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
+                <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
+                  <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
+                </div>
+                <a href="#" className="px-2 w-full sm:text-xs">بیشتر</a>
+                <ChevronLeftIcon className="w-5 h-5 text-white absolute left-2 sm:w-3 sm:h-3"/> 
+              </li>
+            </ul>
             </div>
-            <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
-              <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-                <DiCss3 className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
-              </div>
-              <a href="#" className="px-2 w-full sm:text-xs">CSS</a>
-            </li>
-            <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
-              <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-                <DiJavascript className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
-              </div>
-              <a href="#" className="px-2 w-full sm:text-xs">JavaScript</a>
-            </li>
-            <li className="flex items-center border border-indigo-500 w-full h-10 rounded px-2 my-2 text-gray-600 sm:h-7">
-              <div id="icon" className="h-8 w-10 bg-indigo-500 rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-                <DiReact className="w-6 h-6 text-white sm:h-4 sm:w-4"/>
-              </div>
-              <a href="#" className="px-2 w-full sm:text-xs">React</a>
-            </li>
-            <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
-              <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-                <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
-              </div>
-              <a href="#" className="px-2 w-full sm:text-xs">بیشتر</a>
-              <ChevronLeftIcon className="w-5 h-5 text-white absolute left-2 sm:w-3 sm:h-3"/> 
-            </li>
-          </ul>
+            <div id="btnHolder" className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto transition-all">
+              <button className="btn btn-primary w-full sm:p text-center mt-1">ویرایش</button>
+              <button className="btn btn-red w-full text-center mt-1">خروج</button>
+            </div>
           </div>
-          <div id="btnHolder" className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto transition-all">
-            <button className="btn btn-primary w-full sm:p text-center mt-1">ویرایش</button>
-            <button className="btn btn-red w-full text-center mt-1">خروج</button>
-          </div>
-        </div>
+        </Transition>
     </aside>
   )
 }

@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import {AppContext,useGlobalContext} from './context';
 /* import icons */
-import { Popover, Transition } from '@headlessui/react'
+import { Transition } from '@headlessui/react'
 import prof from './img/prof.jpg'
 import {
   BookmarkAltIcon,
@@ -47,10 +47,13 @@ const NavBar = ()=>{
           <div id="profmode" className="absolute left-14 bg-gray-400 w-2 h-2 text-white rounded-full sm:left-24"></div>
             <img src={prof} alt="" />
           </div>
-          <MenuIcon className="h-6 w-6 sm:hidden"/>
+          {(isSidebarOpen?
+            <XIcon onClick={()=>closeSidebar()} className="h-6 w-6 sm:hidden" />
+            :<MenuIcon onClick={()=>openSidebar()} className="h-6 w-6 sm:hidden"/>
+            )}
         </div>
       </header>
-      <div className={`${isSidebarOpen?'':'hidden'}`} >
+      <div className={`${isSidebarOpen?'':'hidden'} transition-transform`} >
         <div id="linksHolder" className="relative px-2" >
         <ul id="links">
             <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
@@ -89,7 +92,7 @@ const NavBar = ()=>{
             </li>
           </ul>
           </div>
-          <div id="btnHolder" className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto">
+          <div id="btnHolder" className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto transition-all">
             <button className="btn btn-primary w-full sm:p text-center mt-1">ویرایش</button>
             <button className="btn btn-red w-full text-center mt-1">خروج</button>
           </div>

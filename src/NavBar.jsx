@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment,useContext } from 'react';
+import React, { useContext,useRef,useEffect,useState } from 'react';
 import ReactDOM from 'react-dom';
 import {AppContext,useGlobalContext} from './context';
 /* import icons */
@@ -20,10 +20,10 @@ import {
   XIcon,
   MailIcon,
   ChevronLeftIcon,
-  ChevronDoubleRightIcon
+  ChevronDoubleRightIcon,
 } from '@heroicons/react/outline'
 import { ChevronDownIcon,
-  HomeIcon
+  HomeIcon,ChatIcon,
  } from '@heroicons/react/solid'
 
 import { DiCss3,DiJavascript,DiReact } from "react-icons/di";
@@ -31,8 +31,30 @@ import { DiCss3,DiJavascript,DiReact } from "react-icons/di";
 const NavBar = ()=>{
 
   const {isSidebarOpen,openSidebar,closeSidebar} = useGlobalContext();
+  const linksHolderRef = useRef(null);
+  const linksRef = useRef(null);
+  const btnHolderRef = useRef(null);
   const data = useGlobalContext();
-  console.log(data);
+  const  [winWidth,setWinWidth] = useState(window.innerWidth)
+  useEffect(()=>{
+    // if click menu bar show links
+    const linksHeight = linksHolderRef.current.getBoundingClientRect().height;
+    if(isSidebarOpen){
+      linksHolderRef.current.style.opacity = '100%';
+    }else {
+      linksHolderRef.current.style.opacity = '0';
+    }
+    // if winWidth bigger than 640px show links
+    function handelResize() {
+      setWinWidth(window.innerWidth);
+    }
+    window.addEventListener('resize',handelResize);
+    if(winWidth>640){
+      linksHolderRef.current.style.opacity = '100%';
+    }
+    console.log(winWidth);
+    return ()=> window.removeEventListener('resize',handelResize);
+  },[isSidebarOpen,winWidth])
  return(
     <aside className="sidebar show-sidebar sm:bg-green-100 sm:w-36 sm:float-right sm:h-screen sm:relative">
     <div id="toggleSideBar" className="hidden relative bg-indigo-500 w-6 h-4 text-white rounded-full justify-center top-1 sm:flex sm:left-1">
@@ -53,19 +75,9 @@ const NavBar = ()=>{
             )}
         </div>
       </header>
-      <Transition
-          as={Fragment}
-          show={isSidebarOpen}
-          enter="transform transition duration-[600ms]"
-          enterFrom="opacity-0 scale-50"
-          enterTo="opacity-100 rotate-0 scale-100"
-          leave="transform duration-200 transition ease-in-out"
-          leaveFrom="opacity-100 scale-100 "
-          leaveTo="opacity-0 scale-50 "
-        >
-        <div className={`${isSidebarOpen?'':'hidden'} transition-all`} >
+        <div className= "transition-all duration-700 overflow-hidden" ref={linksHolderRef} >
           <div id="linksHolder" className="relative px-2" >
-          <ul id="links">
+          <ul id="links" ref={linksRef}>
               <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
                 <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
                   <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
@@ -95,19 +107,18 @@ const NavBar = ()=>{
               </li>
               <li className="flex items-center w-full h-10 bg-indigo-500 rounded px-2 mt-2 text-white sm:h-7">
                 <div id="icon" className="h-8 w-10 bg-white rounded-lg flex items-center justify-center sm:h-5 sm:w-6 sm:rounded">
-                  <HomeIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
+                  <ChatIcon className="w-6 h-6 text-indigo-500 sm:h-4 sm:w-4"/>
                 </div>
                 <a href="#" className="px-2 w-full sm:text-xs">بیشتر</a>
                 <ChevronLeftIcon className="w-5 h-5 text-white absolute left-2 sm:w-3 sm:h-3"/> 
               </li>
             </ul>
             </div>
-            <div id="btnHolder" className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto transition-all">
+            <div id="btnHolder" ref={btnHolderRef} className="flex flex-col items-center px-3 w-full mb-1 absolute bottom-0 sm:mx-2 sm:block sm:px-0 sm:w-auto transition-all">
               <button className="btn btn-primary w-full sm:p text-center mt-1">ویرایش</button>
               <button className="btn btn-red w-full text-center mt-1">خروج</button>
             </div>
           </div>
-        </Transition>
     </aside>
   )
 }

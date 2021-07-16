@@ -23,8 +23,22 @@ body {
 }
 /* when height smaler tahn content btnHolder remain bottom */
 @media screen and (max-height:606px) {
-	#btnHolder {
+	.btnHolderNav {
 		position: relative;
 	}
 }
 
+@media screen and (max-height:420px) {
+	.btnHolderSide {
+		position: relative;
+	}
+}
+
+.btnSide {
+	padding: 0 0px !important;
+}
+
+/*when sidebar is limited text email counter min*/
+.text-minCounter {
+	font-size: 6.5px !important;
+}
